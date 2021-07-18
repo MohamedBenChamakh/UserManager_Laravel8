@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::delete('/users/delete',function(){
+    return 'delete user';
+});
+
+Route::post('/users/save',function(){
+    return 'save user';
+});
+
+Route::get('/users',function(){
+    return 'users';
+});
+
+Route::get('/users/{id}',function(){
+    return 'user';
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
