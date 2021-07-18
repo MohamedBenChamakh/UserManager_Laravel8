@@ -23,6 +23,8 @@ Route::post('/register',[AuthController::class,'register']);
 Route::group(['middleware'=> ['auth:sanctum']], function () {
     Route::resource('users',UserController::class);
     Route::get('/users/search/{name}',[UserController::class,'search']);
+
+    Route::post('/logout',[AuthController::class,'logout']);
 });
 
 
