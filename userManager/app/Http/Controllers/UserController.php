@@ -26,6 +26,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email'=> 'required',
+            'password' => 'required'
+        ]);
+
        return User::create([
             'name'=> $request->name,
             'email'=> $request->email,
@@ -41,7 +47,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::where('id',$id)->get();
+        return User::find($id);
     }
 
     /**
@@ -53,7 +59,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $user = User::find($id);
+       $user->update($request->all());
+       return $user;
     }
 
     /**
@@ -64,6 +72,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return User::where('id',$id)->delete();
+        return User::destroy($id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        return User::where('name','like','%'.$name.'%')->get();
     }
 }
