@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,7 +17,7 @@ use App\Http\Controllers\UserController;
 */
 
 //Public routes
-
+Route::post('/register',[AuthController::class,'register']);
 
 //Protected routes
 Route::group(['middleware'=> ['auth:sanctum']], function () {
